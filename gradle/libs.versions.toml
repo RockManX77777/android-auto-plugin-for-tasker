@@ -1,0 +1,31 @@
+[versions]
+activity                     = "1.13.0"
+agp                          = "9.1.0" # Please verify this version against your project's actual AGP version.
+appcompat                    = "1.7.1"
+androidxCarApp               = "1.7.0"
+androidxCoreKtx              = "1.18.0"
+androidxEspressoCore         = "3.7.0"
+androidxJunit                = "4.13.2" # For junit:junit
+androidxJunitExt             = "1.3.0" # For androidx.test.ext:junit
+androidxLifecycle            = "2.10.0"
+constraintlayout             = "2.2.1"
+kotlin                       = "2.3.20"
+material                     = "1.13.0"
+taskerPluginLibrary          = "0.4.10"
+
+[libraries]
+androidx-activity                 = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-appcompat                = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-car-app                  = { group = "androidx.car.app", name = "app", version.ref = "androidxCarApp" }
+androidx-constraintlayout         = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-core-ktx                 = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCoreKtx" }
+androidx-espresso-core            = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspressoCore" }
+androidx-lifecycle-livedata-ktx   = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
+androidx-test-ext-junit           = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunitExt" }
+google-material                   = { group = "com.google.android.material", name = "material", version.ref = "material" }
+junit                             = { group = "junit", name = "junit", version.ref = "androidxJunit" }
+tasker-pluginlibrary              = { group = "com.joaomgcd", name = "taskerpluginlibrary", version.ref = "taskerPluginLibrary" }
+
+[plugins]
+android-application               = { id = "com.android.application", version.ref = "agp" }
+kotlin-android                    = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
