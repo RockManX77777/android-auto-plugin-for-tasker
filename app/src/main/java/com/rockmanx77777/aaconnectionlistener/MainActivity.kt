@@ -64,10 +64,33 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    private fun setBootReceiverEnabled(enabled: Boolean) {
+        val componentName = android.content.ComponentName(this, BootCompletedReceiver::class.java)
+        val packageManager = packageManager
+        val newState = if (enabled) {
+            PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+        } else {
+            PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+        }
+        packageManager.setComponentEnabledSetting(
+            componentName,
+            newState,
+            PackageManager.DONT_KILL_APP
+        )
+    }
+
     private fun startAaMonitoring() {
+        setBootReceiverEnabled(true)
         val serviceIntent = Intent(this, AAConnectionMonitoringService::class.java)
         startForegroundService(serviceIntent)
         Toast.makeText(this, "Service started", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopAaMonitoring() {
+        setBootReceiverEnabled(false)
+        val serviceIntent = Intent(this, AAConnectionMonitoringService::class.java)
+        stopService(serviceIntent)
+        Toast.makeText(this, "Service stopped", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +111,10 @@ class MainActivity : AppCompatActivity() {
                 // No permission needed for older versions
                 startAaMonitoring()
             }
+        }
+        val stopButton: Button = findViewById(R.id.stopButton)
+        stopButton.setOnClickListener {
+            stopAaMonitoring()
         }
     }
 }

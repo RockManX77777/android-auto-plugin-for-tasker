@@ -62,7 +62,7 @@
              ============================================================ -->
         <receiver
             android:name=".BootCompletedReceiver"
-            android:enabled="true"
+            android:enabled="false"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

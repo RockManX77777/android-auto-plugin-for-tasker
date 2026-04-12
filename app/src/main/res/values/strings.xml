@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Android Auto Connection Listener - Tasker Plugin</string>
     <string name="start_listening_button_text">Start Listening</string>
+    <string name="stop_listening_button_text">Stop Listening</string>
     <string name="notification_channel_name">Android Auto Connection Monitor</string>
     <string name="notification_title">Monitoring AA Connection</string>
     <string name="aa_connected">Android Auto is Connected</string>

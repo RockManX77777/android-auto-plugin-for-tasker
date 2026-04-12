@@ -59,3 +59,5 @@ captures/
 # Other
 /gradle/gradle-daemon-jvm.properties
 .pytest_cache/
+/release
+**/release

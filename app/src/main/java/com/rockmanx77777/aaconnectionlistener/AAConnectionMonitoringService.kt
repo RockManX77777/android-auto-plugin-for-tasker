@@ -3,6 +3,7 @@ package com.rockmanx77777.aaconnectionlistener
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
@@ -69,17 +70,29 @@ class AAConnectionMonitoringService : Service() {
         val channel = NotificationChannel(
             channelId,
             getString(R.string.notification_channel_name),
-            NotificationManager.IMPORTANCE_DEFAULT
+            NotificationManager.IMPORTANCE_LOW
         )
         val contentText = getConnectionText(isAaConnected())
         notificationManager = getSystemService(NotificationManager::class.java)
         notificationManager?.createNotificationChannel(channel)
 
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        val pendingIntent = PendingIntent.getActivity(
+            this, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
         notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(getString(R.string.notification_title))
             .setContentText(contentText)
             .setSmallIcon(R.mipmap.ic_launcher)
-        
+            .setOngoing(true)
+            .setSilent(true)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setCategory(NotificationCompat.CATEGORY_SERVICE)
+            .setContentIntent(pendingIntent)
+
         return notificationBuilder.build()
     }
 
@@ -90,9 +103,6 @@ class AAConnectionMonitoringService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        // Determine initial connection state synchronously to initialize notification accurately
-        val initialConnectionState = carConnection.type.value ?: CarConnection.CONNECTION_TYPE_NOT_CONNECTED
-
         startForeground(1, createNotification())
 
         carConnection.type.observeForever(connectionObserver)
