@@ -1,6 +1,6 @@
 [versions]
 activity                     = "1.13.0"
-agp                          = "9.1.0" # Please verify this version against your project's actual AGP version.
+agp = "9.1.1" # Please verify this version against your project's actual AGP version.
 appcompat                    = "1.7.1"
 androidxCarApp               = "1.7.0"
 androidxCoreKtx              = "1.18.0"
