@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Android Auto Connection Listener - Tasker Plugin"
+rootProject.name = "AA Connection Listener"
 include(":app")
