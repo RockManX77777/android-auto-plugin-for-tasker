@@ -43,7 +43,6 @@ captures/
 # Signing files
 *.jks
 *.keystore
-*.properties
 !gradle.properties
 
 # Service files (e.g., google-services.json if it contains secrets and is not checked in)
